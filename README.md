@@ -1,6 +1,7 @@
 #StudySpot ☕️📚🌳
 
 StudySpot is a front-end web application designed for users to find comforable, productive places to study such as cafe's, parks, and libraries.
+
 The project focuses on clean UI, thoughtful UX, and scalable state management using React and TypeScript.
 
 ## Features
