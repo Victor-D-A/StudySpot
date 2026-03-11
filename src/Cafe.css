@@ -38,8 +38,8 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5em;
     width: min(1100px, 100%);
-    padding: 0 2em 3em;
-    margin: 2em 10em 0;
+    padding: 0 1em 3em;
+    margin: 2em auto 0;
 }
 
 .cafe-card {
@@ -52,12 +52,12 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    transition: transform 0.2 ease, box-shadow 0.2 ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cafe-card:hover {
     transform: translateY(-4px);
-    box-shadow: rgba(0, 0, 0, 0.14);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
 }
 
 .cafe-card h2 {
@@ -84,11 +84,20 @@
 @media (max-width: 950px) {
     .cafe-cards-grid {
         grid-template-columns: repeat(2, 1fr);
+        padding: 0 1em 3em;
+        margin: 2em auto 0;
     }
 }
 
 @media (max-width: 650px) {
     .cafe-cards-grid {
-grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
+        padding: 0 1em 2em;
+        margin: 2em auto 0;
+    }
+
+    .cafe-description {
+        font-size: 1em;
+        max-width: 90%;
     }
 }
