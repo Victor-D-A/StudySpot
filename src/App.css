@@ -13,6 +13,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
 }
 
 .app {
@@ -27,6 +28,10 @@ html, body {
   background-color: rgb(221, 221, 221);
   scrollbar-gutter: stable;
   overflow-y: scroll;
+}
+
+body{
+  display: block;
 }
 
 button {
@@ -44,6 +49,8 @@ button {
   font-size: 1em;
   width: 100%;
   gap: 1em;
+  padding: 1em 0;
+  box-sizing: border-box;
 }
 
 .user-name input {
@@ -55,10 +62,18 @@ button {
   padding: .2em .5em;
 }
 
+.user-greeting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  flex: 1;
+}
+
 /* Maybe it does not look that good here */
 .home-page h2 {
   margin: 0;
-  text-align: left;
+  text-align: center;
 }
 
 .navbar {
@@ -66,6 +81,8 @@ button {
   align-items: center;
   gap: 2em; /* Space between navbar buttons/items */
   width: 100%;
+  padding: 1em 0;
+  box-sizing: border-box;
 }
 
 .brand {
@@ -75,7 +92,7 @@ button {
 }
 
 /* used to have logo and h2 on same line */
-.brand h2 {
+.brand h2 { /* controls */
   margin: 0;
 }
 
@@ -135,9 +152,85 @@ button {
   opacity: 1;
 }
 
-.filters {
+.description-position {
   display: flex;
-  justify-content: center;
-  gap: 1em;
-  margin: 1.5em;  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2.5em;
+  width: min(100%, 1200px);
+  margin: 1.5em auto 0;
+  padding: 0 2em;
 }
+
+.description-left {
+  flex: 0 1 420px;
+  text-align: left;
+}
+
+.description-right {
+  flex: 1;
+}
+
+.description {
+  border: 5px ridge black;
+  padding: 1em;
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: bold;
+  max-width: 300px;
+  text-align: left;
+  max-width: 450px;
+  flex: 1;
+}
+
+.description-right .slideshow-container {
+  margin: 0;
+  height: 350px;
+  max-width: 800px;
+  width: 100%;
+  padding-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .description-position {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .description-left {
+    text-align: center;
+  }
+
+  .description {
+    max-width: 700px;
+    text-align: center;
+  }
+
+  .description-right {
+    width: 100%;
+  }
+}
+
+.top-controls {
+  width: min(100%, 1200px);
+  margin: 1.25em auto 0;
+  padding: 0 2em;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+
+  flex-wrap: wrap;
+}
+
+/* .top-controls .filters {
+  margin: 0;
+} */
+
+.top-controls .user-name input {
+  margin: 0;
+}
+
+/* Just starting working on the top controls and will finish working on the way it looks in terms of the position. */
+/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> */

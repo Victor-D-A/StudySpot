@@ -10,7 +10,6 @@ import slideShowImage4 from './assets/slideShowImage4.png';
 import slideShowImage5 from './assets/slideShowImage5.png';
 import slideShowImage6 from './assets/slideShowImage6.png';
 import Cafe from './Cafe';
-// import { Link } from 'react-router-dom'; // For later use when pages for the tabs are created
 
 type tabName = "Home" | "Cafe" | "Libraries" | "Parks" | "SignUp";
 
@@ -36,52 +35,6 @@ function Tabs({activeTab, setActiveTab}: TabsProps) {
       </header>
     </div>
   )
-}
-
-function Filters() {
-  const [activeFilters, setActiveFilters] = useState<string[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
-
-  function toggleFilter(filter: string) {
-    setActiveFilters((prev) => // gives current value of array and we return a new array
-      prev.includes(filter) // checks if the filter user clicks is already active(True/False)
-        ? prev.filter(f => f !== filter) // Removes filter (if/else statement), Creates new array without the filter
-        // essentially, for each element in the array, call this function and ask if you want to keep item or not.(for the above line)
-        : [...prev, filter] // Adds filter, Creates new array with previous filters and the new filter
-    );
-
-  }
-
-  return ( 
-    <div className = "filters">
-      <button onClick = {() => setIsOpen(o => !o)}>
-        Filters ({activeFilters.length})
-      </button>
-
-      {isOpen && (
-      <div className = "filters-panel">
-        {[
-          "WiFi", 
-          "Outdoor Seating", 
-          "Quiet", "24/7", 
-          "Pet Friendly", 
-          "Outlets", 
-          "Private Room", 
-          "Plenty of seating", 
-          "Booths"
-        ].map((filter) => (
-          <button
-            key={filter}
-            className = {activeFilters.includes(filter) ? "filter active" : "filter"}
-            onClick = {() => toggleFilter(filter)}
-          >
-          {filter}
-        </button>
-        ))}
-      </div>
-      )}
-    </div>
-  );
 }
 
 // Each time button is clicked or input is typed, App component re-renders
@@ -127,24 +80,39 @@ export default function App() {
 
   return ( // JSX code
     <div className="app">
+      <Tabs activeTab={activeTab} setActiveTab={setActiveTab}/>
+
       {activeTab === "Home" && (
         <div className="home-page">
-          <Tabs activeTab={activeTab} setActiveTab={setActiveTab}/>
-          <Filters />
-            {greet()}
-            <button onClick={() => { clearLocalStorage(); setSavedName(""); }}> {/* Clears current user data */}
-              New User
-            </button>
-            {/* <h1>Comfort While Studying</h1> */}
-            <h1>Expanding Your Thoughts</h1>
-            {transitionedImages()}
-            <h2>{savedName}</h2>
+          <div className = "top-controls">
+            <div className = "user-greeting">
+              {greet()}
+              <h2>{savedName ? `Hello, ${savedName}!` : 'Hello!'}</h2>
+            </div>
+              <button onClick={() => { clearLocalStorage(); setSavedName(""); }}>  {/*Clears current user data*/}
+                New User
+              </button>
+            </div>
+            <h1>Find Your Comfort Zone</h1>
+            <div className = "description-position">
+              <div className = "description-left">
+                <p className = "description">
+                  StudySpot helps you look for cafes, libraries, parks, or any location that fits your study style. You can filter for WIFI, outlet availability, 
+                  pricing, atmosphere, and more to get your momentum going.
+                </p>
+              </div>
+
+              <div className = "description-right">
+                {transitionedImages()}
+              </div>
+            </div>
           </div>
       )}
+
+      
       {activeTab === "Cafe" && (
           <div className='cafe-page'>
-            <Tabs activeTab={activeTab} setActiveTab={setActiveTab}/>
-            <Cafe/> 
+            <Cafe /> 
           </div>
         )}
     </div>
