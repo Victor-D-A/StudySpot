@@ -10,6 +10,7 @@ import slideShowImage4 from './assets/slideShowImage4.png';
 import slideShowImage5 from './assets/slideShowImage5.png';
 import slideShowImage6 from './assets/slideShowImage6.png';
 import Cafe from './Cafe';
+import Libraries from './Libraries';
 
 type tabName = "Home" | "Cafe" | "Libraries" | "Parks" | "SignUp";
 
@@ -113,6 +114,12 @@ export default function App() {
       {activeTab === "Cafe" && (
           <div className='cafe-page'>
             <Cafe /> 
+          </div>
+        )}
+
+      {activeTab === "Libraries" && (
+          <div className='library-page'>
+            <Libraries /> 
           </div>
         )}
     </div>
