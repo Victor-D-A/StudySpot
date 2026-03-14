@@ -148,5 +148,5 @@ export const cafes: Location[] = [
         `Open Late 7 days a week with a lively atmosphere in the afternoon and evening hours. The early mornings are often quiet. It is a great place for friends to 
         meetup and talk or study. Seating options are mainly table tops with some booths and a high top. Outlet availbility is mainly located by the booths and
         close to the high top.`
-    }
+    },
 ]

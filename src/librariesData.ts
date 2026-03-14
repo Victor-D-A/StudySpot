@@ -3,7 +3,7 @@ import type { Location } from "./types";
 export const libraries: Location[] = [
     {
         id: 1,
-        name: "Alafaya Library",
+        name: "Alafaya Branch Library",
         features: [
             "Studious environment",
             "Plenty of Seating",
@@ -11,6 +11,115 @@ export const libraries: Location[] = [
             "Public Computers Available",
         ],
         description:
-        "Alafaya Library is a solid option for casual studying if you want a cozy atmosphere."
+        `Alafaya Branch Library is a solid option for casual studying if you want a cozy atmosphere.`
+    },
+
+    {
+        id: 2,
+        name: "Chicaksaw Branch Library",
+        features: [
+            "Modern Library Appearance",
+            "Quiet",
+            "Spacious",
+            "Computers Available",
+            "Plenty of Outlets",
+            "Wifi Available",
+        ],
+        description:
+        `With a modernized look and friendly staff, Chickasaw Branch Library is one of the best spots to bring in your work to have a productive day. Areas are 
+        always kept clean and a large selection of books.`
+    },
+
+    {
+        id: 3,
+        name: "Orlando Public Library",
+        features: [
+            "Parking Garages Mainly Used For Parking",
+            "Good Selection of Books",
+            "Spacious Seating",
+            "Classes Available",
+            "Wifi",
+        ],
+        description:
+        `Friendly staff and an organized selection of books, this library offers a great atmosphere for long study sessions. Great for students or people who 
+        need to use a computer. The books available give great information for research projects or learning.`
+    },
+
+    {
+        id: 4,
+        name: "Winter Park Library",
+        features: [
+            "Free for Winter Park Residents",
+            "Modern Builiding",
+            "Great Selection of Books",
+            "Calm Atmosphere",
+            "Outlets Available",
+            "Non-Residents Pay $1 for Computer Use"
+        ],
+        description:
+        `The Winter Park Library is a well taken care of location but they are limited in what you can checkout or do if you are a non resident. A $150/year
+        library card is available to be able to use more of their services as a non-resident. The staff is well knowledged about their programs and selection 
+        of books. An upper level offers a great area just for kids.`
+    },
+
+    {
+        id: 5,
+        name: "Maitland Public Library",
+        features: [
+            "Great Family Location",
+            "Calm Ambiance",
+            "Guest or Library Card Required for Computer Use",
+            "Free Wifi",
+            "Directors Conference Room Perfect for Study Groups Up To 8 People"
+        ],
+        description:
+        `Offering a cozy atmosphere, it is community-focused environment great for remote work, and study sessions. The location is Smaller compared to other
+        libraries in the region, however, it is organized, clean, and quiet. `
+    },
+
+    {
+        id: 6,
+        name: "Seminole County Public Library",
+        features: [
+            "Quiet Study Spaces",
+            "Silent and Non-Silent Study Rooms",
+            "Public Computers Available",
+            "Wifi and Printing Available",
+            "3D Printing Available For a Cost",
+        ],
+        description:
+        `This Branch offers a modern, corporate, and spacious feeling for those looking for more of a professional place to study or work. Privacy Pods or Booths
+        that provide excellent visual blocking for focusing. Wired tables, built-in power strips and floor plugs available throughout the library. Sound level is 
+        so if you are seeking a quiet area, head for the quiet rooms behind the glass.`
+    },
+
+    {
+        id: 7,
+        name: "UCF John C. Hitt Library",
+        features: [
+            "Study Rooms",
+            "Two Top Level Quiet Floors",
+            "Computers Available to Public",
+            "Large Selection of Books",
+            "Plenty of Seating for Groups or Solo Sessions",
+        ],
+        description:
+        `Modernized, five-story library with each floor offering a unique atmosphere for your mood. Whether it be quiet areas, large computer sections, comfortable cushioned
+        seats, white boards, or large tables, you can find what you are looking for on one of the floors for you. `
+    },
+
+    {
+        id: 8,
+        name: "Valencia College Library",
+        features: [
+            "Study Rooms",
+            "Collection Browsing",
+            "Quiet",
+            "Group Friendly",
+            "Strong Wifi",
+        ],
+        description:
+        `Valencia College Library serves as an academic hub for both the general public and students. For the general public, it offers, quiet environments, plenty 
+        of outlets, various tables, and a large selection of books for research or study purposes.`
     },
 ];
