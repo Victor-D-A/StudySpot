@@ -14,7 +14,7 @@ export default function Cafe() {
 
     return ( // JSX code
         <div className="cafe-page-wrapper">
-            <h1>Cafe's</h1>
+            <h1>Cafe Shops</h1>
             <div className = "cafe-description-wrapper">
                 <p className = "cafe-description">Welcome to the Cafe Shops page! Here you will be able to find the best cafes that best suit your study needs. 
                     From cozy corners to vibrant atmospheres, our curated list of cafes offer a variety of environments for you to focus and get your work done.

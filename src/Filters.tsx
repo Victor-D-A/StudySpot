@@ -35,7 +35,10 @@ export default function Filters({
 
   return ( 
     <div className = "filters">
-      <button onClick = {() => setIsOpen(o => !o)}>
+      <button 
+        className = "filters-toggle" 
+        onClick = {() => setIsOpen(o => !o)}
+      >
         Filters ({activeFilters.length})
       </button>
 

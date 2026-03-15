@@ -11,6 +11,7 @@ import slideShowImage5 from './assets/slideShowImage5.png';
 import slideShowImage6 from './assets/slideShowImage6.png';
 import Cafe from './Cafe';
 import Libraries from './Libraries';
+import Parks from './Parks';
 
 type tabName = "Home" | "Cafe" | "Libraries" | "Parks" | "SignUp";
 
@@ -28,10 +29,10 @@ function Tabs({activeTab, setActiveTab}: TabsProps) {
         <img src={StudySpotLogo} className="StudySpotLogo" alt="StudySpot Logo" />
         <h2>StudySpot</h2>
       </div>
-      <button className = {activeTab === "Home" ? "tab active" : "tab"} onClick={() => setActiveTab("Home")}>Home</button>
-      <button className = {activeTab === "Cafe" ? "tab active" : "tab"} onClick={() => setActiveTab("Cafe")}>Cafe</button>
-      <button className = {activeTab === "Libraries" ? "tab active" : "tab"} onClick={() => setActiveTab("Libraries")}>Libraries</button>
-      <button className = {activeTab === "Parks" ? "tab active" : "tab"} onClick={() => setActiveTab("Parks")}>Parks</button>
+      <button className = {activeTab === "Home" ? "tab-button active" : "tab-button"} onClick={() => setActiveTab("Home")}>Home</button>
+      <button className = {activeTab === "Cafe" ? "tab-button active" : "tab-button"} onClick={() => setActiveTab("Cafe")}>Cafe</button>
+      <button className = {activeTab === "Libraries" ? "tab-button active" : "tab-button"} onClick={() => setActiveTab("Libraries")}>Libraries</button>
+      <button className = {activeTab === "Parks" ? "tab-button active" : "tab-button"} onClick={() => setActiveTab("Parks")}>Parks</button>
       <button className = {activeTab === "SignUp" ? "tab signup-tab active" : "tab signup-tab"} onClick={() => setActiveTab("SignUp")}>Sign Up</button>
       </header>
     </div>
@@ -120,6 +121,12 @@ export default function App() {
       {activeTab === "Libraries" && (
           <div className='library-page'>
             <Libraries /> 
+          </div>
+        )}
+
+      {activeTab === "Parks" && (
+          <div className='park-page'>
+            <Parks /> 
           </div>
         )}
     </div>

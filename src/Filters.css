@@ -1,4 +1,4 @@
-.filters {
+.filters { /* Filter Chips */
   position: relative;
   display: inline-block;
   justify-content: center;
@@ -6,34 +6,51 @@
   margin: 1.5em;  flex-wrap: wrap;
 }
 
+.filters-toggle { /* Main Filter Button */
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 0.6em 1.2em;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.filters-toggle:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
 .filters-panel {
   position: absolute;
-  top: 60px;
+  top: 120%;
   left: 0;
-  width: 420px;
-  background: white;
-  color: #222;
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  width: 280px;
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 1em;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  z-index: 20;
+  gap: 0.5em;
+  z-index: 100;
 }
 
 .filter {
-  border: 1px solid #ddd;
-  background: lightseagreen;
+  border: none;
+  background: #9fb2a3;
+  color: #1f2f2f;
   border-radius: 999px;
-  padding: 8px 14px;
+  padding: 0.4em 0.8em;
   cursor: pointer;
-  font-size: 0.9em;
-  transition: 0.2s;
+  /* font-size: 0.9em;
+  transition: 0.2s; */
 }
 
 .filter:hover {
-  background: #178a84;
+  background: var(--primary-hover);
+  transform: translateY(-1px);
 }
 
 .filter.active:hover {
@@ -41,13 +58,14 @@
 }
 
 .filter.active {
-  background:#2fbf71;
+  background: var(--primary);
   color: white;
-  border-color: #2fbf71;
-  font-weight: 600;
+  transform: scale(0.96)
+  /* border-color: #2fbf71;
+  font-weight: 600; */
 }
 
-.filter:active {
+.filter:active { /* Active Chips */
   transform: scale(0.96);
 }
 

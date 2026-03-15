@@ -1,24 +1,24 @@
-.cafe-page {
+.park-page {
     padding-top: 1.5rem;
     margin: 0;
     min-height: 100vh;
     width: 100%;
-    background-color: var(--bg-cafe);
+    background-color: var(--bg-park);
 }
 
-.cafe-page-wrapper {
+.park-page-wrapper {
     text-align: center;
 }
 
-.cafe-description-wrapper {
+.park-description-wrapper {
     display: flex;
     justify-content: center;
     margin-top: 1em;
 }
 
-.cafe-description {
+.park-description {
     font-size: 1.2em;
-    color: var(--text-main);
+    color: #333;
     max-width: 600px;
     margin: 0 auto;
     font-weight: bold;
@@ -33,7 +33,7 @@
     border-radius: 10px;
 }
 
-.cafe-cards-grid {
+.park-cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5em;
@@ -43,7 +43,7 @@
 }
 
 .location-card {
-    background-color: var(--card-bg);
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 6px 16px rgba(0,0,0,0.08);
     overflow: hidden;
@@ -70,7 +70,7 @@
     margin-top: 8px;
     line-height: 1.5;
     font-size: 1em;
-    color: #2c3e50;
+    color: #333;
     font-weight: bold;
 }
 
@@ -82,7 +82,7 @@
 }
 
 @media (max-width: 950px) {
-    .cafe-cards-grid {
+    .park-cards-grid {
         grid-template-columns: repeat(2, 1fr);
         padding: 0 1em 3em;
         margin: 2em auto 0;
@@ -90,13 +90,13 @@
 }
 
 @media (max-width: 650px) {
-    .cafe-cards-grid {
+    .park-cards-grid {
         grid-template-columns: 1fr;
         padding: 0 1em 2em;
         margin: 2em auto 0;
     }
 
-    .cafe-description {
+    .park-description {
         font-size: 1em;
         max-width: 90%;
     }

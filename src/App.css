@@ -1,7 +1,22 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-neutral: #f5f6f7;
+  --bg-cafe: #e6c9a2;
+  --bg-library: #c6b8a3;
+  --bg-park: #82addb;
+
+  --nav-bg: #f3f4f6;
+
+  --primary: #4caf50;
+  --primary-hover: #3f9e44;
+
+  --card-bg: #f8f8f8;
+  --text-main: #2c3e50;
 }
 
 #root {
@@ -15,7 +30,7 @@
   margin: 0;
   min-height: 100vh;
   width: 100%;
-  background-color: rgb(255, 142, 189);
+  background-color: var(--bg-neutral);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -38,20 +53,41 @@ html, body {
 
 body{
   display: block;
+  color: var(--text-main);
 }
 
 button {
-  align-self: center;
-  background-color: rgb(70, 186, 70);
-  font-size: 1rem;
-  min-width: 8em;
+  font: inherit;
   margin: 0;
+}
+
+.tab-button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75em 1.5em;
+  border-radius: 999px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tab-button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.tab-button.active {
+  background-color: var(--text-main);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .tabs {
   display: flex;
   align-items: center;
-  background-color: rgb(154, 93, 43);
+  background-color: var(--nav-bg);
   font-size: 1em;
   width: 100%;
   gap: 1em;
@@ -74,6 +110,10 @@ button {
   align-items: center;
   margin: 0;
   flex: 1;
+}
+
+h1, h2, h3 {
+  color: var(--text-main);
 }
 
 /* Maybe it does not look that good here */
@@ -112,8 +152,12 @@ button {
 
 .signup-tab {
   background-color: lightseagreen;
-  font-weight: bold;
+  font-weight: 700;
   margin-left: auto;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75em 1.5em;
+  cursor: pointer;
 }
 
 @media (max-width: 480px) {
@@ -178,7 +222,8 @@ button {
 }
 
 .description {
-  border: 5px ridge black;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background: white;
   padding: 1em;
   border-radius: 10px;
   font-size: 1em;
