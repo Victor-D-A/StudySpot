@@ -19,7 +19,7 @@ The project focuses on clean UI, thoughtful UX, and scalable state management us
 ## Tech Stack
 - React
 - TypeScript
-- Custome CSS
+- Custom CSS
 - Vite
 
 ---
