@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-//import react from 'react';
 import './App.css';
 import type { JSX } from 'react/jsx-dev-runtime';
 import StudySpotLogo from './assets/StudySpotLogo.png';

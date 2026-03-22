@@ -2,11 +2,31 @@ import { useState } from 'react';
 import './Libraries.css';
 import Filters from "./Filters";
 import LocationCard from "./LocationCard";
-import { libraries } from "./librariesData";
+import librariesData from "./librariesData.json";
+import type { Location } from "./types";
 
 export default function Libraries() {
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
     const [selectedLibrary, setSelectedLibrary] = useState<number | null>(null);
+
+    const libraries: Location[] = librariesData;
+
+    const filteredLibraries =
+        activeFilters.length === 0
+        ? libraries
+        : libraries.filter((libraries) =>
+            activeFilters.every((filter) => {
+                if (filter === "Wifi") return libraries.hasWifi;
+                if (filter === "Outlets") return libraries.hasOutlets;
+                if (filter === "Quiet") return libraries.quiet;
+                if (filter === "Booths") return libraries.hasBooths;
+                if (filter === "Outdoor Seating") return libraries.hasOutdoorSeating;
+                if (filter === "Pet Friendly") return libraries.isPetFriendly;
+                if (filter === "Private Room") return libraries.hasPrivateRoom;
+                if (filter === "24/7") return libraries.isOpen24Hours;
+                return true;
+        })
+    );
 
     function handleLibraryClick(libraryId: number) {
         setSelectedLibrary((current) => (current === libraryId ? null : libraryId));
@@ -26,7 +46,7 @@ export default function Libraries() {
             </div>
             <div className = "section-divider"></div>
             <div className = "library-cards-grid">
-                {libraries.map((library) => (
+                {filteredLibraries.map((library) => (
                     <LocationCard
                         key={library.id}
                         location = {library} 

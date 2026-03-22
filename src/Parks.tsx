@@ -2,11 +2,31 @@ import { useState } from 'react';
 import './Parks.css';
 import Filters from "./Filters";
 import LocationCard from "./LocationCard";
-import { parks } from "./parksData";
+import parksData from "./parksData.json";
+import type { Location } from "./types";
 
 export default function Parks() {
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
     const [selectedPark, setSelectedPark] = useState<number | null>(null);
+
+    const park: Location[] = parksData;
+
+    const filteredParks =
+        activeFilters.length === 0
+        ? park
+        : park.filter((park) =>
+            activeFilters.every((filter) => {
+                if (filter === "Wifi") return park.hasWifi;
+                if (filter === "Outlets") return park.hasOutlets;
+                if (filter === "Quiet") return park.quiet;
+                if (filter === "Booths") return park.hasBooths;
+                if (filter === "Outdoor Seating") return park.hasOutdoorSeating;
+                if (filter === "Pet Friendly") return park.isPetFriendly;
+                if (filter === "Private Room") return park.hasPrivateRoom;
+                if (filter === "24/7") return park.isOpen24Hours;
+                return true;
+            })
+        );
 
     function handleParkClick(parkId: number) {
         setSelectedPark((current) => (current === parkId ? null : parkId));
@@ -26,7 +46,7 @@ export default function Parks() {
             </div>
             <div className = "section-divider"></div>
             <div className = "park-cards-grid">
-                {parks.map((park) => (
+                {filteredParks.map((park) => (
                     <LocationCard
                         key={park.id}
                         location = {park} 

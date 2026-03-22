@@ -1,0 +1,108 @@
+[
+    {
+        "id": 1,
+        "name": "Lake Claire(UCF)",
+        "features": [
+            "Several Pavilions with Seating and a Scenic View",
+            "Wifi Connection in Some Areas",
+            "Nearby Starbucks for a Coffee",
+            "On UCF Campus",
+            "Relaxed and Scenic"
+        ],
+        "hasWifi": true,
+        "hasOutlets": true,
+        "quiet": true,
+        "hasBooths": true,
+        "hasOutdoorSeating": true,
+        "isPetFriendly": true,
+        "hasPrivateRoom": false,
+        "isOpen24Hours": false,
+        "description":
+        "If you enjoy studying outdoors, then this offers a great view of the lake while completing research papers. There is some wifi options here so it is best to come here for work that does not require web surfing unless you are close to the area providing wifi."
+    },
+
+    {
+        "id": 2,
+        "name": "Blanchard Park",
+        "features": [
+            "Multiple Picnic Seating and Pavilions",
+            "Great Grass Areas for Blanket Style Studying",
+            "Beautiful Surroundings",
+            "Nature Focused"
+        ],
+        "hasWifi": false,
+        "hasOutlets": true,
+        "quiet": true,
+        "hasBooths": true,
+        "hasOutdoorSeating": true,
+        "isPetFriendly": true,
+        "hasPrivateRoom": false,
+        "isOpen24Hours": false,
+        "description":
+        "Lovely spacious blanket on the grass kind of park where you can enjoy the sun while reading a book or typing an essay. It is best to make sure that you bring a glare screen protector for your laptop to avoid the sun relection."
+    },
+
+    {
+        "id": 3,
+        "name": "Downey Park",
+        "features": [
+            "Spaces available for your pet to bring along",
+            "Limited Open Lawns",
+            "Active Community",
+            "Picnic Tables or Grass Seating"
+        ],
+        "hasWifi": false,
+        "hasOutlets": true,
+        "quiet": true,
+        "hasBooths": true,
+        "hasOutdoorSeating": true,
+        "isPetFriendly": true,
+        "hasPrivateRoom": false,
+        "isOpen24Hours": false,
+        "description":
+        "Offering Picnic tables to study in, this park offers you a dog park to be able to bring your dog along with you for some time outdoors while you study. It is constantly active here so it is recommended to bring some noise cancelling headphones if you would like some silence."
+    },
+
+    {
+        "id": 4,
+        "name": "Blue Jacket Park",
+        "features": [
+            "Pavilions",
+            "Picnic Tables",
+            "Benches or Shady Open Grass Seating Areas",
+            "Quiet"
+        ],
+        "hasWifi": false,
+        "hasOutlets": true,
+        "quiet": true,
+        "hasBooths": true,
+        "hasOutdoorSeating": true,
+        "isPetFriendly": true,
+        "hasPrivateRoom": false,
+        "isOpen24Hours": false,
+        "description":
+        "Large and beautiful, this park offers people a quiet place to enjoy the outdoors while reading material or finishing a paper. There are plenty of trees for shade and the restrooms are well maintained."
+    },
+
+    {
+        "id": 5,
+        "name": "UCF Arboretum",
+        "features": [
+            "Best Outdoor Study Park",
+            "Several Tables or Shady Grass Seating",
+            "Calm Atmosphere",
+            "Wifi Available in Most Areas",
+            "Quiet"
+        ],
+        "hasWifi": true,
+        "hasOutlets": true,
+        "quiet": true,
+        "hasBooths": true,
+        "hasOutdoorSeating": true,
+        "isPetFriendly": true,
+        "hasPrivateRoom": false,
+        "isOpen24Hours": false,
+        "description":
+        "Known as the best on campus study area for people who want to escape the library. This area is quiet, well maintained, and you have access to the wifi from campus through most of the park."
+    }
+]

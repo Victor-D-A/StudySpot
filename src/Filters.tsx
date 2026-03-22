@@ -45,13 +45,13 @@ export default function Filters({
       {isOpen && (
       <div className = "filters-panel">
         {[
-          "WiFi", 
+          "Wifi", 
           "Outdoor Seating", 
-          "Quiet", "24/7", 
+          "Quiet", 
+          "24/7", 
           "Pet Friendly", 
           "Outlets", 
           "Private Room", 
-          "Plenty of seating", 
           "Booths"
         ].map((filter) => (
           <button

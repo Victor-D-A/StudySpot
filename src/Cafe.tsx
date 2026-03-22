@@ -2,11 +2,31 @@ import { useState } from 'react';
 import './Cafe.css';
 import Filters from "./Filters";
 import LocationCard from "./LocationCard";
-import { cafes } from "./Cafes";
+import cafesData from "./cafes.json";
+import type { Location } from "./types";
 
 export default function Cafe() {
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
     const [selectedCafe, setSelectedCafe] = useState<number | null>(null);
+
+    const cafes: Location[] = cafesData;
+
+    const filteredCafes =
+        activeFilters.length === 0 // no filters selected, show all cafes.
+        ? cafes
+        : cafes.filter((cafe) => 
+            activeFilters.every((filter) => {
+                if (filter === "Wifi") return cafe.hasWifi;
+                if (filter === "Outlets") return cafe.hasOutlets;
+                if (filter === "Quiet") return cafe.quiet;
+                if (filter === "Booths") return cafe.hasBooths;
+                if (filter === "Outdoor Seating") return cafe.hasOutdoorSeating;
+                if (filter === "Pet Friendly") return cafe.isPetFriendly;
+                if (filter === "Private Room") return cafe.hasPrivateRoom;
+                if (filter === "24/7") return cafe.isOpen24Hours;
+                return true;
+            })
+        );
 
     function handleCafeClick(cafeId: number) {
         setSelectedCafe((current) => (current === cafeId ? null : cafeId));
@@ -25,7 +45,7 @@ export default function Cafe() {
             </div>
             <div className = "section-divider"></div>
             <div className = "cafe-cards-grid">
-                {cafes.map((cafe) => (
+                {filteredCafes.map((cafe) => ( // makes UI change
                     <LocationCard
                         key={cafe.id}
                         location = {cafe} 
@@ -40,5 +60,3 @@ export default function Cafe() {
 
 
 }
-
-// Create a revolving carousel of the cafe cards, with the card in the middle being the largest and most visible, and the cards below are smaller.
