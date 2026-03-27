@@ -1,15 +1,22 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import './Parks.css';
 import Filters from "./Filters";
 import LocationCard from "./LocationCard";
 import parksData from "./parksData.json";
-import type { Location } from "./types";
+import type { Location, FavoriteItem } from "./types";
+import { getFavorites, saveFavorites } from './favorites';
 
 export default function Parks() {
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
     const [selectedPark, setSelectedPark] = useState<number | null>(null);
+    const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
 
     const park: Location[] = parksData;
+
+    useEffect(() => {
+        setFavorites(getFavorites());
+    }, []);
 
     const filteredParks =
         activeFilters.length === 0
@@ -32,6 +39,26 @@ export default function Parks() {
         setSelectedPark((current) => (current === parkId ? null : parkId));
     }
 
+    function handleToggleFavorite(parkId: number) {
+        const favoriteToToggle: FavoriteItem = {
+            id: parkId,
+            category: "park",
+        };
+
+        const isAlreadyFavorite = favorites.some(
+            (favorite) => favorite.id === parkId && favorite.category === "park"
+        );
+
+        const updatedFavorites = isAlreadyFavorite
+        ? favorites.filter(
+            (favorite) => !(favorite.id === parkId && favorite.category === "park")
+            )
+        : [...favorites, favoriteToToggle];
+
+        setFavorites(updatedFavorites);
+        saveFavorites(updatedFavorites);
+    }
+
     return ( // JSX code
         <div className="park-page-wrapper">
             <h1>Parks</h1>
@@ -52,6 +79,10 @@ export default function Parks() {
                         location = {park} 
                         isSelected = {selectedPark === park.id}
                         onClick = {() => handleParkClick(park.id)}
+                        isFavorite = {favorites.some(
+                            (favorite) => favorite.id === park.id && favorite.category === "park"
+                        )}
+                        onToggleFavorite={() => handleToggleFavorite(park.id)}
                     />
                 ))}
 

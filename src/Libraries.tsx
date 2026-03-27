@@ -1,15 +1,22 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import './Libraries.css';
 import Filters from "./Filters";
 import LocationCard from "./LocationCard";
 import librariesData from "./librariesData.json";
-import type { Location } from "./types";
+import type { Location, FavoriteItem } from "./types";
+import { getFavorites, saveFavorites } from './favorites';
 
 export default function Libraries() {
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
     const [selectedLibrary, setSelectedLibrary] = useState<number | null>(null);
+    const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
 
     const libraries: Location[] = librariesData;
+
+    useEffect(() => {
+        setFavorites(getFavorites());
+    }, []);
 
     const filteredLibraries =
         activeFilters.length === 0
@@ -32,6 +39,26 @@ export default function Libraries() {
         setSelectedLibrary((current) => (current === libraryId ? null : libraryId));
     }
 
+    function handleToggleFavorite(libraryId: number) {
+        const favoriteToToggle: FavoriteItem = {
+            id: libraryId,
+            category: "library",
+        };
+
+        const isAlreadyFavorite = favorites.some(
+            (favorite) => favorite.id === libraryId && favorite.category === "library"
+        );
+
+        const updatedFavorites = isAlreadyFavorite
+        ? favorites.filter(
+            (favorite) => !(favorite.id === libraryId && favorite.category === "library")
+            )
+        : [...favorites, favoriteToToggle];
+
+        setFavorites(updatedFavorites);
+        saveFavorites(updatedFavorites);
+    }
+
     return ( // JSX code
         <div className="library-page-wrapper">
             <h1>Libraries</h1>
@@ -52,6 +79,10 @@ export default function Libraries() {
                         location = {library} 
                         isSelected = {selectedLibrary === library.id}
                         onClick = {() => handleLibraryClick(library.id)}
+                        isFavorite = {favorites.some(
+                            (favorite) => favorite.id === library.id && favorite.category === "library"
+                        )}
+                        onToggleFavorite={() => handleToggleFavorite(library.id)}
                     />
                 ))}
 

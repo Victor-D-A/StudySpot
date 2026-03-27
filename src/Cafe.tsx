@@ -1,15 +1,22 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import './Cafe.css';
 import Filters from "./Filters";
 import LocationCard from "./LocationCard";
 import cafesData from "./cafes.json";
-import type { Location } from "./types";
+import type { Location, FavoriteItem } from "./types";
+import { getFavorites, saveFavorites } from './favorites';
 
 export default function Cafe() {
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
     const [selectedCafe, setSelectedCafe] = useState<number | null>(null);
+    const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
 
     const cafes: Location[] = cafesData;
+
+    useEffect(() => {
+        setFavorites(getFavorites());
+    }, []);
 
     const filteredCafes =
         activeFilters.length === 0 // no filters selected, show all cafes.
@@ -32,6 +39,26 @@ export default function Cafe() {
         setSelectedCafe((current) => (current === cafeId ? null : cafeId));
     }
 
+    function handleToggleFavorite(cafeId: number) {
+        const favoriteToToggle: FavoriteItem = {
+            id: cafeId,
+            category: "cafe",
+        };
+
+        const isAlreadyFavorite = favorites.some(
+            (favorite) => favorite.id === cafeId && favorite.category === "cafe"
+        );
+
+        const updatedFavorites = isAlreadyFavorite
+        ? favorites.filter(
+            (favorite) => !(favorite.id === cafeId && favorite.category === "cafe")
+            )
+        : [...favorites, favoriteToToggle];
+
+        setFavorites(updatedFavorites);
+        saveFavorites(updatedFavorites);
+    }
+
     return ( // JSX code
         <div className="cafe-page-wrapper">
             <h1>Cafe Shops</h1>
@@ -51,6 +78,10 @@ export default function Cafe() {
                         location = {cafe} 
                         isSelected = {selectedCafe === cafe.id}
                         onClick = {() => handleCafeClick(cafe.id)}
+                        isFavorite = {favorites.some(
+                            (favorite) => favorite.id === cafe.id && favorite.category === "cafe"
+                        )}
+                        onToggleFavorite={() => handleToggleFavorite(cafe.id)}
                     />
                 ))}
 

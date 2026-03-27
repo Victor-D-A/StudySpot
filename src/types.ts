@@ -12,3 +12,8 @@ export type Location = {
     hasPrivateRoom: boolean;
     isOpen24Hours: boolean;
 };
+
+export type FavoriteItem = {
+    id: number;
+    category: "cafe" | "library" | "park";
+};

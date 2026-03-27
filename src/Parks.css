@@ -42,45 +42,6 @@
     margin: 2em auto 0;
 }
 
-.location-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-    overflow: hidden;
-    padding: 1.25em;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.location-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px #3f9e44;
-}
-
-.location-card h2 {
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 0.75em;;
-}
-
-.location-card-description {
-    margin-top: 8px;
-    line-height: 1.5;
-    font-size: 1em;
-    color: #333;
-    font-weight: bold;
-}
-
-.location-card-features {
-    margin: 0;
-    font-size: 1em;
-    padding-left: 18px;
-    color: black;
-}
-
 @media (max-width: 950px) {
     .park-cards-grid {
         grid-template-columns: repeat(2, 1fr);

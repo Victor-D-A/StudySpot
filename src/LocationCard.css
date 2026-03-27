@@ -1,0 +1,56 @@
+.location-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    overflow: hidden;
+    padding: 1.25em;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px #3f9e44;
+}
+
+.location-card h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 0.75em;;
+}
+
+.location-card-description {
+    margin-top: 8px;
+    line-height: 1.5;
+    font-size: 1em;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.location-card-features {
+    margin: 0;
+    font-size: 1em;
+    padding-left: 18px;
+    color: black;
+}
+
+.favorite-button {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: black;
+    padding: 0;
+    margin-bottom: 0.5em;
+}
+
+.favorite-button:hover {
+    transform: scale(1.1);
+}
+
+.favorite-button.favorited {
+    color: gold
+}
