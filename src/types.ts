@@ -15,5 +15,7 @@ export type Location = {
 
 export type FavoriteItem = {
     id: number;
+    name: string;
+    description: string;
     category: "cafe" | "library" | "park";
 };

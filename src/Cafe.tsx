@@ -3,19 +3,39 @@ import { useEffect } from 'react';
 import './Cafe.css';
 import Filters from "./Filters";
 import LocationCard from "./LocationCard";
-import cafesData from "./cafes.json";
+import { fetchCafes } from './api/locationsApi';
 import type { Location, FavoriteItem } from "./types";
-import { getFavorites, saveFavorites } from './favorites';
+// import { getFavorites, saveFavorites } from './favorites';
 
-export default function Cafe() {
+interface CafeProps {
+    favorites: FavoriteItem[];
+    setFavorites: React.Dispatch<React.SetStateAction<FavoriteItem[]>>;
+}
+
+export default function Cafe({favorites, setFavorites}: CafeProps) {
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
     const [selectedCafe, setSelectedCafe] = useState<number | null>(null);
-    const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
-
-    const cafes: Location[] = cafesData;
+    const [cafes, setCafes] = useState<Location[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
-        setFavorites(getFavorites());
+
+        async function loadCafes() {
+            try {
+                setLoading(true); // Start request, page is waiting
+                setError(""); // Clear any previous errors
+
+                const data = await fetchCafes(); // Fetch cafes from API
+                setCafes(data); // Store cafes in state
+            } catch {
+                setError("Could not load cafes."); // Show error message if request fails
+            } finally {
+                setLoading(false); // Stop loading no matter what
+            }
+        }
+
+        loadCafes();
     }, []);
 
     const filteredCafes =
@@ -35,28 +55,37 @@ export default function Cafe() {
             })
         );
 
-    function handleCafeClick(cafeId: number) {
-        setSelectedCafe((current) => (current === cafeId ? null : cafeId));
+    function handleCafeClick(cafeItem: number) {
+        setSelectedCafe((current) => (current === cafeItem ? null : cafeItem));
     }
 
-    function handleToggleFavorite(cafeId: number) {
+    function handleToggleFavorite(cafeItem: Location) {
         const favoriteToToggle: FavoriteItem = {
-            id: cafeId,
+            id: cafeItem.id,
+            name: cafeItem.name,
+            description: cafeItem.description,
             category: "cafe",
         };
 
-        const isAlreadyFavorite = favorites.some(
-            (favorite) => favorite.id === cafeId && favorite.category === "cafe"
+        const isAlreadyFavorite = favorites.some( // checks if cafe is in favorites array
+            (favorite) => favorite.id === cafeItem.id && favorite.category === "cafe"
         );
 
-        const updatedFavorites = isAlreadyFavorite
+        const updatedFavorites = isAlreadyFavorite 
         ? favorites.filter(
-            (favorite) => !(favorite.id === cafeId && favorite.category === "cafe")
+            (favorite) => !(favorite.id === cafeItem.id && favorite.category === "cafe")
             )
-        : [...favorites, favoriteToToggle];
+        : [...favorites, favoriteToToggle]; // if cafe is already a favorite, remove it from favorites. If not, add it to favorites by creating a new array with the existing favorites and the new favorite item.
 
-        setFavorites(updatedFavorites);
-        saveFavorites(updatedFavorites);
+        setFavorites(updatedFavorites); // Update state with new favorites array
+    }
+
+    if (loading) {
+        return <p>Loading cafes...</p>;
+    }
+
+    if (error) {
+        return <p>{error}</p>;
     }
 
     return ( // JSX code
@@ -81,7 +110,7 @@ export default function Cafe() {
                         isFavorite = {favorites.some(
                             (favorite) => favorite.id === cafe.id && favorite.category === "cafe"
                         )}
-                        onToggleFavorite={() => handleToggleFavorite(cafe.id)}
+                        onToggleFavorite={() => handleToggleFavorite(cafe)}
                     />
                 ))}
 

@@ -3,19 +3,38 @@ import { useEffect } from 'react';
 import './Libraries.css';
 import Filters from "./Filters";
 import LocationCard from "./LocationCard";
-import librariesData from "./librariesData.json";
+import { fetchLibraries } from './api/locationsApi';
 import type { Location, FavoriteItem } from "./types";
-import { getFavorites, saveFavorites } from './favorites';
 
-export default function Libraries() {
+interface LibraryProps {
+    favorites: FavoriteItem[];
+    setFavorites: React.Dispatch<React.SetStateAction<FavoriteItem[]>>;
+}
+
+export default function Libraries({favorites, setFavorites}: LibraryProps) {
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
     const [selectedLibrary, setSelectedLibrary] = useState<number | null>(null);
-    const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
-
-    const libraries: Location[] = librariesData;
+    const [libraries, setLibraries] = useState<Location[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
-        setFavorites(getFavorites());
+
+        async function loadLibraries() {
+            try {
+                setLoading(true); // Start request, page is waiting
+                setError(""); // Clear any previous errors
+
+                const data = await fetchLibraries(); // Fetch libraries from API
+                setLibraries(data); // Store libraries in state
+            } catch {
+                setError("Could not load libraries."); // Show error message if request fails
+            } finally {
+                setLoading(false); // Stop loading no matter what
+            }
+        }
+
+        loadLibraries();
     }, []);
 
     const filteredLibraries =
@@ -35,28 +54,37 @@ export default function Libraries() {
         })
     );
 
-    function handleLibraryClick(libraryId: number) {
-        setSelectedLibrary((current) => (current === libraryId ? null : libraryId));
+    function handleLibraryClick(libraryItem: number) {
+        setSelectedLibrary((current) => (current === libraryItem ? null : libraryItem));
     }
 
-    function handleToggleFavorite(libraryId: number) {
+    function handleToggleFavorite(libraryItem: Location) {
         const favoriteToToggle: FavoriteItem = {
-            id: libraryId,
+            id: libraryItem.id,
+            name: libraryItem.name,
+            description: libraryItem.description,
             category: "library",
         };
 
         const isAlreadyFavorite = favorites.some(
-            (favorite) => favorite.id === libraryId && favorite.category === "library"
+            (favorite) => favorite.id === libraryItem.id && favorite.category === "library"
         );
 
         const updatedFavorites = isAlreadyFavorite
         ? favorites.filter(
-            (favorite) => !(favorite.id === libraryId && favorite.category === "library")
+            (favorite) => !(favorite.id === libraryItem.id && favorite.category === "library")
             )
         : [...favorites, favoriteToToggle];
 
         setFavorites(updatedFavorites);
-        saveFavorites(updatedFavorites);
+    }
+
+    if (loading) {
+        return <p>Loading libraries...</p>;
+    }
+
+    if (error) {
+        return <p>{error}</p>;
     }
 
     return ( // JSX code
@@ -82,7 +110,7 @@ export default function Libraries() {
                         isFavorite = {favorites.some(
                             (favorite) => favorite.id === library.id && favorite.category === "library"
                         )}
-                        onToggleFavorite={() => handleToggleFavorite(library.id)}
+                        onToggleFavorite={() => handleToggleFavorite(library)}
                     />
                 ))}
 

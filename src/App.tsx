@@ -11,6 +11,8 @@ import slideShowImage6 from './assets/slideShowImage6.png';
 import Cafe from './Cafe';
 import Libraries from './Libraries';
 import Parks from './Parks';
+import { getFavorites, saveFavorites } from './favorites';
+import type { FavoriteItem } from './types';
 
 type tabName = "Home" | "Cafe" | "Libraries" | "Parks" | "SignUp";
 
@@ -45,6 +47,16 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<tabName>("Home");
   const images = [slideShowImage, slideShowImage2, slideShowImage3, slideShowImage4, slideShowImage5, slideShowImage6];
   const [slideIndex, setSlideIndex] = useState(0);
+  const [favorites, setFavorites] = useState<FavoriteItem[]>([]); // State to hold the favorites, lifted up to App to persist across tabs
+
+  useEffect(() => {
+    const savedFavorites = getFavorites();
+    setFavorites(savedFavorites);
+  }, []); // Load favorites on initial render)
+
+  useEffect(() => {
+    saveFavorites(favorites);
+  }, [favorites]); // Save favorites to local storage whenever they change
 
   useEffect(() => {
     if (activeTab !== "Home") return; // Only runs slideshow on Home tab
@@ -84,6 +96,23 @@ export default function App() {
       <Tabs activeTab={activeTab} setActiveTab={setActiveTab}/>
 
       {activeTab === "Home" && (
+        <>
+        <section className = "favorites-section">
+          <h2>Your Favorites</h2>
+        {favorites.length === 0 ? (
+          <p>No favorites selected yet.</p>
+        ) : (
+          <div className = "favorites-grid">
+            {favorites.map((item) => (
+              <div key = {item.id} className = "favorite-card">
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
+                <p>{item.category}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
         <div className="home-page">
           <div className = "top-controls">
             <div className = "user-greeting">
@@ -108,26 +137,28 @@ export default function App() {
               </div>
             </div>
           </div>
+        </>
       )}
 
       
       {activeTab === "Cafe" && (
           <div className='cafe-page'>
-            <Cafe /> 
+            <Cafe favorites = {favorites} setFavorites = {setFavorites} /> 
           </div>
         )}
 
       {activeTab === "Libraries" && (
           <div className='library-page'>
-            <Libraries /> 
+            <Libraries favorites = {favorites} setFavorites = {setFavorites} /> 
           </div>
         )}
 
       {activeTab === "Parks" && (
           <div className='park-page'>
-            <Parks /> 
+            <Parks favorites = {favorites} setFavorites = {setFavorites} /> 
           </div>
         )}
+        
     </div>
   );
   
