@@ -106,8 +106,7 @@ export default function App() {
             {favorites.map((item) => (
               <div key = {item.id} className = "favorite-card">
                 <h3>{item.name}</h3>
-                <p>{item.description}</p>
-                <p>{item.category}</p>
+                <span className = "category-badge">{item.category}</span>
               </div>
             ))}
           </div>
